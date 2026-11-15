@@ -11,8 +11,8 @@ authors:
     affiliation: United Arab Emirates University
 year: 2026
 license: CC-BY-4.0
-url: "https://huggingface.co/datasets/khawajasafiullah/failures-in-agentic-ai"
-repository-code: "https://github.com/khawajasafiullah18/agentic-failure-study"
+url: "https://huggingface.co/datasets/agentic-failure-study/failures-in-agentic-ai"
+repository-code: "https://github.com/agentic-failure-study/agentic-failure-study"
 keywords:
   - agentic AI
   - multi-agent systems

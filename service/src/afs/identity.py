@@ -52,10 +52,10 @@ def _env(name: str, default: str) -> str:
 # --------------------------------------------------------------------------- #
 # Namespace: the only place a project location is written down.
 # --------------------------------------------------------------------------- #
-GH_OWNER = _env("AFS_GH_OWNER", "khawajasafiullah18")
+GH_OWNER = _env("AFS_GH_OWNER", "agentic-failure-study")
 GH_REPO = _env("AFS_GH_REPO", "agentic-failure-study")
 
-HF_OWNER = _env("AFS_HF_OWNER", "khawajasafiullah")
+HF_OWNER = _env("AFS_HF_OWNER", "agentic-failure-study")
 HF_REPO = _env("AFS_HF_REPO", "failures-in-agentic-ai")
 
 SITE = _env("AFS_SITE", "agentic.theaiplusplus.com")

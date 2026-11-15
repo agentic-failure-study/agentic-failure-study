@@ -44,10 +44,38 @@ SOURCE_EXTRA = ["src", "deploy", "tools", "docs", "configs", "tests"]
 SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", "node_modules", ".venv"}
 SKIP_FILES = {"check_identity.py", "identity.py", "SHA256SUMS.txt"}
 
+# Some artefacts exist precisely to record the namespace as it was before the move.
+# The "before" fingerprint is the evidence that nothing changed across it, so a
+# checker that rewrote or ignored that file would destroy its point.
+HISTORICAL = {"release_fingerprint_before.json"}
+
 # A file may opt out by carrying this line. Only the document that records the
 # project's own history should use it: a stale-link checker that can be silenced
 # with a comment is only worth having if the opt-out is visible and rare.
 PRAGMA = "identity-check: allow-legacy"
+
+# The dataset card credits the location the release used to live at: that block is
+# history, and rewriting it would delete the evidence that the move happened. It is
+# exempted by section rather than by file, so the rest of the same card is still
+# checked - a file-level opt-out would have silenced the whole document.
+PROVENANCE_HEADING = "## Prior release location"
+
+
+def _provenance_lines(lines: list[str]) -> set[int]:
+    """Line numbers inside the provenance section, 1-indexed."""
+    inside: set[int] = set()
+    active = False
+    for i, line in enumerate(lines, 1):
+        if line.strip().startswith(PROVENANCE_HEADING):
+            active = True
+            inside.add(i)
+            continue
+        if active:
+            if line.startswith("## "):
+                active = False
+                continue
+            inside.add(i)
+    return inside
 
 
 def _iter_files(targets: list[str]) -> list[Path]:
@@ -64,7 +92,7 @@ def _iter_files(targets: list[str]) -> list[Path]:
                 continue
             if any(part in SKIP_DIRS for part in f.parts):
                 continue
-            if f.name in SKIP_FILES:
+            if f.name in SKIP_FILES or f.name in HISTORICAL:
                 continue
             if f.suffix.lower() in {".png", ".jpg", ".jpeg", ".pdf", ".docx",
                                     ".pptx", ".parquet", ".zip", ".ico"}:
@@ -87,7 +115,11 @@ def scan(targets: list[str]) -> list[tuple[str, int, str, str]]:
             continue
         if not any(m in text for m in markers):
             continue
-        for i, line in enumerate(text.splitlines(), 1):
+        lines = text.splitlines()
+        exempt = _provenance_lines(lines)
+        for i, line in enumerate(lines, 1):
+            if i in exempt:
+                continue
             for marker, correct in markers.items():
                 if marker in line:
                     hits.append((str(f.relative_to(ROOT)), i, marker, correct))

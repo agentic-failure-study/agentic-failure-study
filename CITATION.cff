@@ -3,12 +3,16 @@ message: "If you use this corpus, taxonomy or codebook, cite it as below."
 title: "Failures in Agentic AI: a five-dimension taxonomy and corpus of reported failures"
 type: software
 authors:
-  - family-names: Safiullah
-    given-names: Khawaja
+  - family-names: Aldahmani
+    given-names: Maryam
+    affiliation: United Arab Emirates University
+  - family-names: Alhosani
+    given-names: Shama
+    affiliation: United Arab Emirates University
 year: 2026
 license: MIT
 url: "https://agentic.theaiplusplus.com/"
-repository-code: "https://github.com/khawajasafiullah18/agentic-failure-study"
+repository-code: "https://github.com/agentic-failure-study/agentic-failure-study"
 keywords:
   - agentic AI
   - multi-agent systems
@@ -24,8 +28,12 @@ references:
   - type: dataset
     title: "Failures in Agentic AI: labelled corpus"
     authors:
-      - family-names: Safiullah
-        given-names: Khawaja
+        - family-names: Aldahmani
+          given-names: Maryam
+          affiliation: United Arab Emirates University
+        - family-names: Alhosani
+          given-names: Shama
+          affiliation: United Arab Emirates University
     year: 2026
     license: CC-BY-4.0
-    url: "https://huggingface.co/datasets/khawajasafiullah/failures-in-agentic-ai"
+    url: "https://huggingface.co/datasets/agentic-failure-study/failures-in-agentic-ai"

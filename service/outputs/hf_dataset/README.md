@@ -58,11 +58,11 @@ each of the 10 failure types, one row per example, with its source URL.
 ```python
 from datasets import load_dataset
 
-ds = load_dataset("khawajasafiullah/failures-in-agentic-ai")
+ds = load_dataset("agentic-failure-study/failures-in-agentic-ai")
 df = ds["train"].to_pandas()
 
 df["failure_type_label"].value_counts()
-exemplars = load_dataset("khawajasafiullah/failures-in-agentic-ai", data_files="data/exemplars.parquet")
+exemplars = load_dataset("agentic-failure-study/failures-in-agentic-ai", data_files="data/exemplars.parquet")
 ```
 
 ## Distribution of failure types
@@ -137,6 +137,18 @@ boundaries, which are stated in the report rather than tuned away.
 - Collection used only the public GitHub API, rate limited, with every request
   logged.
 
+## Prior release location
+
+This dataset was first published at:
+
+- https://github.com/khawajasafiullah18/agentic-failure-study
+- https://huggingface.co/datasets/khawajasafiullah/failures-in-agentic-ai
+
+It has since moved to `agentic-failure-study/failures-in-agentic-ai`. The move preserved every
+`record_id`: a record keeps its identifier, so a citation of the earlier location
+resolves to the same rows. No row was re-fetched, relabelled or renumbered in the
+move, and the earlier copy is retained as a redirect rather than deleted.
+
 ## Limitations, stated up front
 
 1. **This is the reporting population, not all failures.** It records what
@@ -162,7 +174,7 @@ boundaries, which are stated in the report rather than tuned away.
   author = {Aldahmani, Maryam and Alhosani, Shama},
   year   = {2026},
   note   = {Dataset and codebook, CC BY 4.0},
-  url    = {https://huggingface.co/datasets/khawajasafiullah/failures-in-agentic-ai}
+  url    = {https://huggingface.co/datasets/agentic-failure-study/failures-in-agentic-ai}
 }
 ```
 
@@ -172,4 +184,4 @@ Regenerated from the project repository with `python -m afs.cli hf`. The card,
 the parquet schema and the counts above are produced by the same command, so a
 relabelled corpus cannot leave a stale number in the documentation.
 
-Generated 2026-11-15T00:45:19Z.
+Generated 2026-11-15T00:50:26Z.
