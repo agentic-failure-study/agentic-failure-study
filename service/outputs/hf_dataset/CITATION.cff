@@ -9,9 +9,6 @@ authors:
   - family-names: Alhosani
     given-names: Shama
     affiliation: United Arab Emirates University
-  - family-names: Safiullah
-    given-names: Khawaja
-    affiliation: United Arab Emirates University
 year: 2026
 license: CC-BY-4.0
 url: "https://huggingface.co/datasets/khawajasafiullah/failures-in-agentic-ai"

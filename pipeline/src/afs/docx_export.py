@@ -1022,8 +1022,7 @@ def export_all(out_path: Path | None = None) -> Path:
     if gold.get("status") == "complete":
         split = (gold.get("by_split") or {}).get("test", {})
         _p(doc, f"The reference annotation is human. A stratified sample of "
-                f"{gold['n']} records was coded by hand by one author "
-            f"({identity.MANUAL_CODER}), reading the "
+                f"{gold['n']} records was coded by hand by {identity.MANUAL_CODER}, reading the "
                 "report text without consulting the labeller's output; the automated "
                 "labels were then compared against those hand codes. The figure below "
                 "therefore measures whether the automated labeller reproduces a human "
@@ -1412,6 +1411,9 @@ def export_all(out_path: Path | None = None) -> Path:
     _table(doc, ["Author", "Roles"],
            identity.contributions_text(style="rows"), widths=[1.7, 4.6], size=9)
     _p(doc, identity.CONTRIBUTION_DETAIL, size=9)
+    doc.add_heading("Acknowledgements", level=2)
+    _p(doc, identity.ACKNOWLEDGEMENT, size=9)
+    _p(doc, identity.ANNOTATOR_NOTE, size=8.5, italic=True)
 
     doc.add_heading("Appendix B. Reproduction", level=1)
     _p(doc, "The package is self-contained. From the project root:", size=9.5)

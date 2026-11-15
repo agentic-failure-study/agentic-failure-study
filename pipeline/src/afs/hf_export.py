@@ -506,7 +506,8 @@ def build() -> dict:
     }
 
     card = _card(rows, ex_rows, stats)
-    (HF_DIR / "README.md").write_text(card, encoding="utf-8")    (HF_DIR / "LICENSE").write_text(LICENSE, encoding="utf-8")
+    (HF_DIR / "README.md").write_text(card, encoding="utf-8")
+    (HF_DIR / "LICENSE").write_text(LICENSE, encoding="utf-8")
     (HF_DIR / "CITATION.cff").write_text(CITATION, encoding="utf-8")
 
     import shutil

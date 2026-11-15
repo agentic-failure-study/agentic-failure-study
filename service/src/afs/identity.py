@@ -38,7 +38,7 @@ __all__ = [
     "PROJECT_NAME", "PROJECT_TITLE", "AUTHOR", "LICENSE_NAME",
     "INSTITUTION", "AUTHORS", "CONTRIBUTIONS", "CONTRIBUTION_DETAIL",
     "author_display", "author_surname_list", "author_bibtex", "author_cff",
-    "contributions_text", "MANUAL_CODER", "MANUAL_CODER_FULL",
+    "contributions_text", "MANUAL_CODER", "ANNOTATOR_NOTE", "ACKNOWLEDGEMENT",
     "LEGACY_GH_OWNER", "LEGACY_GH_REPO", "LEGACY_HF_OWNER", "LEGACY_HF_REPO",
     "all_links", "stale_markers", "prior_locations",
 ]
@@ -103,8 +103,6 @@ AUTHORS: list[dict] = [
      "affiliation": INSTITUTION, "orcid": None},
     {"given": "Shama", "family": "Alhosani",
      "affiliation": INSTITUTION, "orcid": None},
-    {"given": "Khawaja", "family": "Safiullah",
-     "affiliation": INSTITUTION, "orcid": None},
 ]
 
 # What each author actually did. Written to be checkable against the repository
@@ -118,29 +116,42 @@ CONTRIBUTIONS: list[tuple[str, tuple[str, ...]]] = [
     ("Shama Alhosani",
      ("Conceptualization", "Methodology", "Investigation",
       "Writing — review and editing")),
-    ("Khawaja Safiullah",
-     ("Software", "Data curation", "Formal analysis", "Validation",
-      "Visualization", "Writing — original draft", "Handover and reproducibility")),
 ]
 
-CONTRIBUTION_DETAIL = (
-    "Author roles are stated in CRediT terms. The software contribution covers the "
-    "collection pipeline, the rule-based labeller and its codebook, the analysis and "
-    "validation suite behind every reported figure, and the application that serves "
-    "them; these are the artefacts in the repository, and each research question is "
-    "mapped to the function that computes it in the evidence map. The handover "
-    "contribution covers the fixed environment, the reproduction tests run from a "
-    "clean directory, and the second-coder packet. Validation of the instrument "
-    "against an independent coder is prepared but not complete, and the report says "
-    "so rather than presenting agreement as established."
+# The implementation and handover were delivered by a technical contributor who is
+# not listed as an author. That work is recorded, because a reader checking the
+# software against the paper needs to know it exists and that it was not done by the
+# named authors - but it is recorded as an acknowledgement, without inventing
+# authorship or leaving a CRediT role assigned to nobody.
+ACKNOWLEDGEMENT = (
+    "The collection pipeline, the rule-based labeller and its codebook, the analysis "
+    "and validation suite behind every reported figure, and the application that "
+    "serves them were implemented by a technical contributor who is not listed as an "
+    "author, and who also prepared the handover package and the second-coder packet. "
+    "Every research question is mapped to the function that computes it in the "
+    "evidence map, so this contribution can be checked against the artefacts rather "
+    "than taken on trust. Validation of the instrument against an independent coder "
+    "is prepared but not complete, and the report says so rather than presenting "
+    "agreement as established."
 )
 
-# The gold sample was coded by hand by one person. With several authors, "the
-# author" no longer identifies anyone, so the methodology names the coder. This is
-# the same person as the Data curation role above, and stating it plainly is what
-# keeps the credit record checkable.
-MANUAL_CODER = "K. Safiullah"
-MANUAL_CODER_FULL = "Khawaja Safiullah"
+CONTRIBUTION_DETAIL = (
+    "Author roles are stated in CRediT terms. The two named authors are responsible "
+    "for the conceptualization, methodology and supervision of the study, and for "
+    "reviewing the resulting artefacts. The implementation work that produced those "
+    "artefacts is acknowledged separately below, so that no CRediT role in the table "
+    "above is claimed by someone who did not perform it."
+)
+
+# The gold sample was coded by hand by one person who is not an author. The
+# methodology names the role, not the person: with the annotator outside the author
+# list, "one of the authors" would be false, and naming an individual in a paper
+# they are not credited on is worse than describing the role.
+MANUAL_CODER = "a single annotator"
+ANNOTATOR_NOTE = (
+    "The annotator is a technical contributor to the study and is not listed as an "
+    "author; the arrangement is recorded in the acknowledgements."
+)
 
 
 def author_display(initials: bool = False) -> str:

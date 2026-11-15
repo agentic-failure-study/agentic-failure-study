@@ -1076,7 +1076,7 @@ def build_paper(out_path: Path | None = None) -> Path:
           f"failure rates at all — only composition given a failure.")
     _body(doc,
           f"Second, labelling is single-coder. The reference annotation in E1 was "
-          f"produced by one author ({identity.MANUAL_CODER}), so κ = "
+          f"produced by {identity.MANUAL_CODER}, so κ = "
           f"{_fmt(kappa, 2)} measures agreement with a "
           f"careful application of the same codebook rather than independent "
           f"reliability. Until the blind second coder is complete, the labels should "
@@ -1156,6 +1156,10 @@ def build_paper(out_path: Path | None = None) -> Path:
     _h(doc, "Author contributions", level=1)
     _body(doc, identity.contributions_text(), size=9.5)
     _p(doc, "All authors approved the final manuscript.", size=9.5)
+
+    _h(doc, "Acknowledgements", level=1)
+    _body(doc, identity.ACKNOWLEDGEMENT, size=9.5)
+    _p(doc, identity.ANNOTATOR_NOTE, size=9)
 
     _h(doc, "Funding", level=1)
     _body(doc, "This research received no specific grant from any funding agency in "

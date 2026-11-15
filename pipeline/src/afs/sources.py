@@ -70,7 +70,7 @@ DERIVATION_LIMIT = (
     "itself was a manual process: its output is the consolidated codebook, and the "
     "notes taken while reading were not retained as a separate artefact. The one "
     "hand-coded sheet that is retained is the 100-record annotation in "
-    "data/gold/gold_sample.csv, coded by hand by one of the authors and used to "
+    "data/gold/gold_sample.csv, coded by hand by a single annotator and used to "
     "measure how far the automated labeller reproduces a human reading, rather than "
     "to build the "
     "categories. A reviewer who wants the "
