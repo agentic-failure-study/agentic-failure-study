@@ -79,6 +79,12 @@ def cmd_requirements(args) -> None:
     print(json.dumps(requirements.export(), indent=2))
 
 
+def cmd_defence(args) -> None:
+    from . import defence
+
+    print(f"defence pack written: {defence.build()}")
+
+
 def cmd_export(args) -> None:
     from .docx_export import export_all
 
@@ -162,6 +168,7 @@ def cmd_all(args) -> None:
     cmd_paper(args)
     cmd_app(args)
     cmd_requirements(args)
+    cmd_defence(args)
     cmd_hf(args)
     audit.append(rec.finish("ok"))
 
@@ -171,7 +178,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("command", choices=["collect", "build", "analyze", "validate",
                                         "export", "paper", "app", "bundle",
                                         "serve", "handover", "score-coder",
-                                        "requirements", "hf", "aidev", "all"])
+                                        "requirements", "hf", "aidev",
+                                        "defence", "all"])
     ap.add_argument("--pages", type=int, default=3)
     ap.add_argument("--sleep", type=float, default=7.0)
     ap.add_argument("--host", default="127.0.0.1")
@@ -185,6 +193,7 @@ def main(argv: list[str] | None = None) -> int:
      "app": cmd_app, "bundle": cmd_bundle, "serve": cmd_serve,
      "handover": cmd_handover, "score-coder": cmd_score_coder,
      "requirements": cmd_requirements, "hf": cmd_hf, "aidev": cmd_aidev,
+     "defence": cmd_defence,
      "all": cmd_all}[args.command](args)
     return 0
 
